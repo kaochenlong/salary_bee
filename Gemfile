@@ -66,3 +66,5 @@ group :development do
   gem "web-console"                     # Debug console on exception pages
 end
 
+
+gem "devise", "~> 4.9"
