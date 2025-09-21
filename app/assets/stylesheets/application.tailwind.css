@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+/* Alpine.js cloak utility to prevent FOUC (Flash of Unstyled Content) */
+[x-cloak] {
+  display: none !important;
+}

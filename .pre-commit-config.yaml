@@ -1,0 +1,23 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: check-yaml
+      - id: check-added-large-files
+
+  - repo: local
+    hooks:
+      - id: rubocop
+        name: RuboCop
+        entry: bin/rubocop
+        language: system
+        files: \.rb$
+        args: [--autocorrect]
+
+      - id: rubocop-check
+        name: RuboCop Check
+        entry: bin/rubocop
+        language: system
+        files: \.rb$
+

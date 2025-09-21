@@ -1,51 +1,68 @@
 source "https://rubygems.org"
 
-# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+# ========================================
+# Core Framework
+# ========================================
 gem "rails", "~> 8.0.2", ">= 8.0.2.1"
-# The modern asset pipeline for Rails [https://github.com/rails/propshaft]
-gem "propshaft"
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", ">= 2.1"
-# Use the Puma web server [https://github.com/puma/puma]
-gem "puma", ">= 5.0"
-# Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
-gem "jsbundling-rails"
-# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
-# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails"
-# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
-gem "cssbundling-rails"
 
-# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
+# ========================================
+# Web Server
+# ========================================
+gem "puma", ">= 5.0"                    # High-performance web server
+gem "thruster", require: false          # HTTP asset caching/compression and X-Sendfile acceleration
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ windows jruby ]
+# ========================================
+# Assets & Frontend
+# ========================================
+gem "propshaft"                         # Modern asset pipeline for Rails
+gem "jsbundling-rails"                  # Bundle and transpile JavaScript
+gem "cssbundling-rails"                 # Bundle and process CSS
+gem "turbo-rails"                       # Hotwire's SPA-like page accelerator
 
-# Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
-gem "solid_cache"
-gem "solid_queue"
-gem "solid_cable"
+# ========================================
+# Database
+# ========================================
+gem "sqlite3", ">= 2.1"                 # SQLite database adapter
 
-# Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
-gem "kamal", require: false
+# ========================================
+# Caching & Background Jobs
+# ========================================
+# Solid suite: Database-backed adapters
+gem "solid_cache"                       # Database-backed Rails.cache store
+gem "solid_queue"                       # Database-backed Active Job queue
+gem "solid_cable"                       # Database-backed Action Cable adapter
 
-# Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
-gem "thruster", require: false
+# ========================================
+# Deployment
+# ========================================
+gem "kamal", require: false             # Docker container deployment tool
 
+# ========================================
+# Platform Compatibility
+# ========================================
+gem "tzinfo-data", platforms: %i[ windows jruby ]  # Timezone data for Windows/JRuby
+
+# ========================================
+# Optional Features
+# ========================================
+# gem "bcrypt", "~> 3.1.7"              # Active Model has_secure_password support
+
+# ========================================
+# Development & Test
+# ========================================
 group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  # Debugging
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 
-  # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
-  gem "brakeman", require: false
-
-  # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
-  gem "rubocop-rails-omakase", require: false
+  # Code Quality
+  gem "brakeman", require: false        # Static analysis for security vulnerabilities
+  gem "rubocop-rails-omakase", require: false  # Rails code style checker
 end
 
+# ========================================
+# Development Only
+# ========================================
 group :development do
-  # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem "web-console"
+  gem "web-console"                     # Debug console on exception pages
 end
+

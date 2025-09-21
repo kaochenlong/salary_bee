@@ -9,9 +9,9 @@
     "build:css": "bunx @tailwindcss/cli -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
   },
   "dependencies": {
-    "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.16",
     "@tailwindcss/cli": "latest",
+    "alpinejs": "^3.14.3",
     "tailwindcss": "latest"
   }
 }
