@@ -90,6 +90,7 @@ GEM
     debug (1.11.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    diff-lcs (1.6.2)
     dotenv (3.1.8)
     drb (2.2.3)
     ed25519 (1.4.0)
@@ -97,6 +98,8 @@ GEM
     erubi (1.13.1)
     et-orbi (1.4.0)
       tzinfo
+    factory_bot (6.5.5)
+      activesupport (>= 6.1.0)
     fugit (1.11.2)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
@@ -238,6 +241,23 @@ GEM
     regexp_parser (2.11.3)
     reline (0.6.2)
       io-console (~> 0.5)
+    rspec-core (3.13.5)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.5)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.5)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-rails (8.0.2)
+      actionpack (>= 7.2)
+      activesupport (>= 7.2)
+      railties (>= 7.2)
+      rspec-core (~> 3.13)
+      rspec-expectations (~> 3.13)
+      rspec-mocks (~> 3.13)
+      rspec-support (~> 3.13)
+    rspec-support (3.13.6)
     rubocop (1.81.1)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -337,12 +357,15 @@ DEPENDENCIES
   brakeman
   cssbundling-rails
   debug
+  factory_bot (~> 6.5)
   jsbundling-rails
   kamal
   pg (~> 1.1)
   propshaft
-  puma (>= 5.0)
+  puma (~> 7.0, >= 7.0.4)
   rails (~> 8.0.3)
+  rspec-rails (~> 8.0)
+  rubocop (~> 1.81)
   rubocop-rails-omakase
   solid_cable
   solid_cache
