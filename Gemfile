@@ -34,6 +34,10 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]  # Windows 時區資料
 gem "bcrypt", "~> 3.1.7"       # 密碼加密 (has_secure_password)
 # gem "image_processing", "~> 1.2" # Active Storage 圖片處理
 
+# ===== 授權與狀態管理 =====
+gem "pundit"                    # 授權管理框架
+gem "aasm"                      # 狀態機管理
+
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "rspec-rails", "~> 8.0"     # RSpec 測試框架
@@ -46,6 +50,7 @@ end
 
 group :development do
   gem "web-console"                # 例外頁面的互動式控制台
+  gem "letter_opener"              # 開發環境郵件預覽
 end
 
 
