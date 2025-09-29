@@ -16,7 +16,6 @@ gem "cssbundling-rails"          # CSS 打包和處理
 
 # ===== Hotwire 全端框架 =====
 gem "turbo-rails"                # SPA 級別的頁面加速器
-gem "stimulus-rails"             # 輕量級 JavaScript 框架
 
 # ===== 快取與背景作業 =====
 gem "solid_cache"                # 資料庫支援的 Rails.cache
@@ -45,6 +44,7 @@ group :development, :test do
   gem "rails-controller-testing"  # Controller 測試支援
   gem "capybara"                   # System 測試支援
   gem "brakeman", require: false  # 安全漏洞靜態分析
+  gem "rubocop", "~> 1.81"        # Ruby 程式碼風格檢查
   gem "rubocop-rails-omakase", require: false  # Rails 程式碼風格檢查
 end
 
@@ -52,7 +52,4 @@ group :development do
   gem "web-console"                # 例外頁面的互動式控制台
   gem "letter_opener"              # 開發環境郵件預覽
 end
-
-
-gem "rubocop", "~> 1.81"
 
