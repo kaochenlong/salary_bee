@@ -72,8 +72,11 @@ GEM
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
       uri (>= 0.13.1)
+    addressable (2.8.7)
+      public_suffix (>= 2.0.2, < 7.0)
     ast (2.4.3)
     base64 (0.3.0)
+    bcrypt (3.1.20)
     bcrypt_pbkdf (1.1.1)
     benchmark (0.4.1)
     bigdecimal (3.2.3)
@@ -81,6 +84,15 @@ GEM
     brakeman (7.1.0)
       racc
     builder (3.3.0)
+    capybara (3.40.0)
+      addressable
+      matrix
+      mini_mime (>= 0.1.3)
+      nokogiri (~> 1.11)
+      rack (>= 1.6.0)
+      rack-test (>= 0.6.3)
+      regexp_parser (>= 1.5, < 3.0)
+      xpath (~> 3.2)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.4)
     crass (1.0.6)
@@ -138,6 +150,7 @@ GEM
       net-pop
       net-smtp
     marcel (1.1.0)
+    matrix (0.4.3)
     mini_mime (1.1.5)
     minitest (5.25.5)
     net-imap (0.5.10)
@@ -191,6 +204,7 @@ GEM
     psych (5.2.6)
       date
       stringio
+    public_suffix (6.0.2)
     puma (7.0.4)
       nio4r (~> 2.0)
     raabro (1.4.0)
@@ -217,6 +231,10 @@ GEM
       activesupport (= 8.0.3)
       bundler (>= 1.15.0)
       railties (= 8.0.3)
+    rails-controller-testing (1.0.5)
+      actionpack (>= 5.0.1.rc1)
+      actionview (>= 5.0.1.rc1)
+      activesupport (>= 5.0.1.rc1)
     rails-dom-testing (2.3.0)
       activesupport (>= 5.0.0)
       minitest
@@ -340,6 +358,8 @@ GEM
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    xpath (3.2.0)
+      nokogiri (~> 1.8)
     zeitwerk (2.7.3)
 
 PLATFORMS
@@ -354,7 +374,9 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   brakeman
+  capybara
   cssbundling-rails
   debug
   factory_bot (~> 6.5)
@@ -364,6 +386,7 @@ DEPENDENCIES
   propshaft
   puma (~> 7.0, >= 7.0.4)
   rails (~> 8.0.3)
+  rails-controller-testing
   rspec-rails (~> 8.0)
   rubocop (~> 1.81)
   rubocop-rails-omakase

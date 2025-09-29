@@ -1,0 +1,9 @@
+<h1>SalaryBee</h1>
+<p>歡迎來到薪資管理系統</p>
+
+<% if Current.user %>
+  <p>歡迎 <%= Current.user.email_address %></p>
+  <%= button_to "Sign out", session_path, method: :delete %>
+<% else %>
+  <%= link_to "Sign in", new_session_path %>
+<% end %>

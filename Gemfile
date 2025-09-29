@@ -31,13 +31,15 @@ gem "thruster", require: false   # HTTP 快取壓縮和加速
 gem "tzinfo-data", platforms: %i[ windows jruby ]  # Windows 時區資料
 
 # ===== 未來可能需要的功能 =====
-# gem "bcrypt", "~> 3.1.7"       # 密碼加密 (has_secure_password)
+gem "bcrypt", "~> 3.1.7"       # 密碼加密 (has_secure_password)
 # gem "image_processing", "~> 1.2" # Active Storage 圖片處理
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "rspec-rails", "~> 8.0"     # RSpec 測試框架
   gem "factory_bot", "~> 6.5"     # 測試資料產生器
+  gem "rails-controller-testing"  # Controller 測試支援
+  gem "capybara"                   # System 測試支援
   gem "brakeman", require: false  # 安全漏洞靜態分析
   gem "rubocop-rails-omakase", require: false  # Rails 程式碼風格檢查
 end
