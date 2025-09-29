@@ -1,11 +1,11 @@
-<div class="min-h-screen bg-gradient-to-br from-yellow-200 to-yellow-300 flex items-center justify-center p-4">
-  <div class="brutalist-card max-w-md w-full p-8" x-data="{ showPassword: false }">
+<div class="min-h-screen bg-gradient-to-br from-emerald-200 to-emerald-300 flex items-center justify-center p-4">
+  <div class="brutalist-card max-w-md w-full p-8" x-data="{ showPassword: false, showPasswordConfirmation: false }">
 
     <div class="text-center mb-8">
       <h1 class="text-4xl font-black text-black mb-2 brutalist-tilt-minus-1">
         SalaryBee
       </h1>
-      <p class="text-lg font-bold text-black">薪資管理系統</p>
+      <p class="text-lg font-bold text-black">建立新帳號</p>
     </div>
 
     <!-- 錯誤訊息顯示 -->
@@ -21,7 +21,18 @@
       </div>
     <% end %>
 
-    <%= form_with url: session_path, class: "space-y-6" do |form| %>
+    <% if @user.errors.any? %>
+      <div class="brutalist-error p-4 mb-6">
+        <h4 class="font-bold mb-2">請修正以下錯誤：</h4>
+        <ul class="list-disc list-inside space-y-1">
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form_with model: @user, class: "space-y-6" do |form| %>
 
       <div>
         <%= form.label :email_address, "電子郵件", class: "block text-black font-bold mb-2 text-lg" %>
@@ -30,7 +41,6 @@
             autofocus: true,
             autocomplete: "username",
             placeholder: "your@email.com",
-            value: params[:email_address],
             class: "brutalist-input w-full px-4 py-4",
             "aria-describedby": "email-help" %>
         <div id="email-help" class="text-sm text-black mt-1 font-medium">
@@ -42,7 +52,7 @@
         <%= form.label :password, "密碼", class: "block text-black font-bold mb-2 text-lg" %>
         <%= form.password_field :password,
             required: true,
-            autocomplete: "current-password",
+            autocomplete: "new-password",
             placeholder: "請輸入密碼",
             maxlength: 72,
             class: "brutalist-input w-full px-4 py-4 pr-14",
@@ -56,26 +66,48 @@
         </button>
 
         <div id="password-help" class="text-sm text-black mt-1 font-medium">
-          請輸入您的密碼（最多 72 個字元）
+          密碼至少 8 個字元
+        </div>
+      </div>
+
+      <div class="relative">
+        <%= form.label :password_confirmation, "確認密碼", class: "block text-black font-bold mb-2 text-lg" %>
+        <%= form.password_field :password_confirmation,
+            required: true,
+            autocomplete: "new-password",
+            placeholder: "請再次輸入密碼",
+            maxlength: 72,
+            class: "brutalist-input w-full px-4 py-4 pr-14",
+            "x-bind:type": "showPasswordConfirmation ? 'text' : 'password'",
+            "aria-describedby": "password-confirmation-help" %>
+
+        <button type="button"
+                @click="showPasswordConfirmation = !showPasswordConfirmation"
+                class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black text-white px-2 py-1 border-2 border-black neubrutalist-shadow-sm hover:bg-gray-800 transition-colors">
+          <span x-text="showPasswordConfirmation ? '👁️' : '👁️‍🗨️'"></span>
+        </button>
+
+        <div id="password-confirmation-help" class="text-sm text-black mt-1 font-medium">
+          請確認兩次密碼輸入相同
         </div>
       </div>
 
       <div class="pt-4">
-        <%= form.submit "登入 SalaryBee",
+        <%= form.submit "建立帳號",
             class: "brutalist-button-primary w-full py-4 px-6 text-xl" %>
       </div>
 
     <% end %>
 
     <div class="text-center mt-6">
-      <%= link_to "忘記密碼？", new_password_path,
+      <%= link_to "已有帳號？立即登入", new_session_path,
           class: "brutalist-button-secondary inline-block py-2 px-4 text-sm" %>
     </div>
 
     <!-- 裝飾性元素 -->
     <div class="mt-8 text-center">
-      <div class="inline-block bg-black text-yellow-400 font-bold px-4 py-2 border-4 border-black neubrutalist-shadow brutalist-tilt-2">
-        安全登入
+      <div class="inline-block bg-black text-emerald-400 font-bold px-4 py-2 border-4 border-black neubrutalist-shadow brutalist-tilt-2">
+        加入 SalaryBee
       </div>
     </div>
   </div>
@@ -88,4 +120,3 @@
     <div class="absolute bottom-32 right-10 w-4 h-4 bg-purple-600 border-4 border-black neubrutalist-shadow brutalist-tilt-minus-1"></div>
   </div>
 </div>
-

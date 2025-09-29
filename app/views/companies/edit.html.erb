@@ -1,0 +1,78 @@
+<div class="min-h-screen bg-gradient-to-br from-yellow-100 to-yellow-200 p-4">
+  <div class="max-w-2xl mx-auto">
+
+    <div class="brutalist-card p-8">
+      <div class="text-center mb-8">
+        <h1 class="text-4xl font-black text-black mb-2 brutalist-tilt-minus-1">
+          編輯公司
+        </h1>
+        <p class="text-lg font-bold text-black">修改 <%= @company.name %> 的資料</p>
+      </div>
+
+      <!-- 錯誤訊息 -->
+      <% if @company.errors.any? %>
+        <div class="brutalist-error p-4 mb-6">
+          <h3 class="font-bold mb-2">請修正以下錯誤：</h3>
+          <ul class="list-disc list-inside">
+            <% @company.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= form_with model: @company, local: true, class: "space-y-6" do |form| %>
+
+        <div>
+          <%= form.label :name, "公司名稱", class: "block text-black font-bold mb-2 text-lg" %>
+          <%= form.text_field :name,
+              required: true,
+              autofocus: true,
+              placeholder: "請輸入公司名稱",
+              class: "brutalist-input w-full px-4 py-4" %>
+        </div>
+
+        <div>
+          <%= form.label :description, "公司簡介", class: "block text-black font-bold mb-2 text-lg" %>
+          <%= form.text_area :description,
+              rows: 4,
+              placeholder: "請簡單介紹您的公司...",
+              class: "brutalist-input w-full px-4 py-4 resize-none" %>
+          <div class="text-sm text-black mt-1 font-medium">
+            選填項目，可以簡單描述公司業務或特色
+          </div>
+        </div>
+
+        <div class="pt-4 space-y-3">
+          <%= form.submit "更新公司",
+              class: "brutalist-button-primary w-full py-4 px-6 text-xl" %>
+
+          <div class="flex space-x-3">
+            <%= link_to "查看公司", @company,
+                class: "brutalist-button-secondary flex-1 py-3 px-6 text-center text-lg" %>
+            <%= link_to "取消", @company,
+                class: "bg-gray-500 border-4 border-black text-white font-bold flex-1 py-3 px-6 text-center text-lg neubrutalist-shadow hover:neubrutalist-hover transition-all" %>
+          </div>
+        </div>
+
+      <% end %>
+
+      <!-- 危險操作區域 -->
+      <div class="mt-8 bg-red-100 border-4 border-red-500 p-4 neubrutalist-shadow brutalist-tilt-1">
+        <h3 class="font-bold text-red-800 mb-2">⚠️ 危險操作</h3>
+        <p class="text-red-700 font-medium text-sm mb-3">
+          刪除公司將會移除所有相關資料，此操作無法復原。
+        </p>
+        <%= link_to "刪除公司", @company, method: :delete,
+            data: { confirm: "確定要刪除 #{@company.name} 嗎？所有相關資料都會永久移除！" },
+            class: "bg-red-500 border-4 border-black text-white font-bold py-2 px-4 neubrutalist-shadow hover:neubrutalist-hover transition-all" %>
+      </div>
+    </div>
+  </div>
+
+  <!-- 背景裝飾 -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden">
+    <div class="absolute top-32 left-10 w-6 h-6 bg-red-500 border-4 border-black neubrutalist-shadow brutalist-tilt-1"></div>
+    <div class="absolute bottom-20 right-20 w-4 h-4 bg-purple-600 border-4 border-black neubrutalist-shadow brutalist-tilt-minus-2"></div>
+  </div>
+</div>

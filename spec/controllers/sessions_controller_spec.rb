@@ -18,7 +18,7 @@ RSpec.describe SessionsController, type: :controller do
           email_address: user.email_address,
           password: "password123"
         }
-        expect(response).to redirect_to(root_url)
+        expect(response).to redirect_to(dashboard_url)
         expect(cookies.signed[:session_id]).to be_present
       end
 

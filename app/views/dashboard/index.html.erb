@@ -1,0 +1,100 @@
+<div class="min-h-screen bg-gradient-to-br from-yellow-100 to-yellow-200 p-4">
+  <div class="max-w-7xl mx-auto">
+
+    <!-- 歡迎區塊 -->
+    <div class="brutalist-card p-6 mb-8 brutalist-tilt-minus-1">
+      <h1 class="text-4xl font-black text-black mb-2">
+        薪資管理儀表板
+      </h1>
+      <p class="text-lg font-bold text-black">
+        歡迎回來，<%= Current.user.email_address %>
+      </p>
+    </div>
+
+    <!-- 快捷操作區 -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <!-- 新增公司按鈕 -->
+      <div class="bg-yellow-400 border-4 border-black p-6 neubrutalist-shadow brutalist-tilt-1">
+        <%= link_to "新增公司", new_company_path,
+            class: "brutalist-button-primary block w-full py-4 text-xl text-center" %>
+      </div>
+
+      <!-- 其他快捷功能 -->
+      <div class="bg-blue-600 border-4 border-black p-6 neubrutalist-shadow brutalist-tilt-minus-1 text-white">
+        <h3 class="font-bold text-xl mb-2">員工管理</h3>
+        <p class="font-medium">管理員工資料</p>
+      </div>
+
+      <div class="bg-green-500 border-4 border-black p-6 neubrutalist-shadow brutalist-tilt-2 text-white">
+        <h3 class="font-bold text-xl mb-2">薪資計算</h3>
+        <p class="font-medium">處理薪資發放</p>
+      </div>
+    </div>
+
+    <!-- 公司列表區域 -->
+    <div class="brutalist-card p-6">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-3xl font-black text-black brutalist-tilt-minus-1">
+          我的公司
+        </h2>
+        <span class="bg-black text-yellow-400 font-bold px-4 py-2 border-4 border-black neubrutalist-shadow">
+          <%= @companies.count %> 間公司
+        </span>
+      </div>
+
+      <!-- 公司卡片網格 -->
+      <% if @companies.any? %>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <% @companies.each_with_index do |company, index| %>
+            <div class="bg-white border-4 border-black p-6 neubrutalist-shadow neubrutalist-hover transition-all
+                        <%= 'brutalist-tilt-1' if index.even? %>
+                        <%= 'brutalist-tilt-minus-1' if index.odd? %>">
+
+              <h3 class="text-xl font-black text-black mb-3">
+                <%= company.name %>
+              </h3>
+
+              <div class="space-y-2 mb-4">
+                <% if company.description.present? %>
+                  <p class="font-medium text-black text-sm">
+                    <%= truncate(company.description, length: 100) %>
+                  </p>
+                <% end %>
+                <p class="font-medium text-black">
+                  <span class="font-bold">建立時間：</span><%= company.created_at.strftime("%Y/%m/%d") %>
+                </p>
+              </div>
+
+              <div class="space-y-2">
+                <%= link_to "查看詳情", company,
+                    class: "brutalist-button-secondary block w-full py-2 text-center text-sm" %>
+                <%= link_to "編輯", edit_company_path(company),
+                    class: "brutalist-button-primary block w-full py-2 text-center text-sm" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <!-- 空狀態 -->
+        <div class="bg-yellow-400 border-4 border-black p-6 neubrutalist-shadow brutalist-tilt-2 col-span-full text-center">
+          <h3 class="text-2xl font-black text-black mb-4">
+            還沒有公司資料
+          </h3>
+          <p class="font-bold text-black mb-4">
+            立即新增您的第一間公司！
+          </p>
+          <%= link_to "新增公司", new_company_path,
+              class: "brutalist-button-primary inline-block py-3 px-6 text-lg" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- 背景裝飾元素 -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden">
+    <div class="absolute top-32 left-10 w-6 h-6 bg-red-500 border-4 border-black neubrutalist-shadow brutalist-tilt-1"></div>
+    <div class="absolute top-20 right-20 w-4 h-4 bg-purple-600 border-4 border-black neubrutalist-shadow brutalist-tilt-minus-2"></div>
+    <div class="absolute bottom-32 left-20 w-8 h-8 bg-orange-500 border-4 border-black neubrutalist-shadow brutalist-tilt-2"></div>
+    <div class="absolute bottom-20 right-10 w-5 h-5 bg-cyan-500 border-4 border-black neubrutalist-shadow brutalist-tilt-minus-1"></div>
+  </div>
+</div>

@@ -11,7 +11,7 @@ RSpec.describe "Authentication", type: :request do
           password: "password123"
         }
 
-        expect(response).to redirect_to(root_url)
+        expect(response).to redirect_to(dashboard_url)
         expect(response.cookies["session_id"]).to be_present
       end
 

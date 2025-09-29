@@ -47,6 +47,26 @@ RSpec.describe User, type: :model do
 
       expect { user.destroy }.to change { Session.count }.by(-1)
     end
+
+    it "透過 user_companies 與多個公司建立關聯" do
+      user = create(:user)
+      company1 = create(:company)
+      company2 = create(:company)
+
+      create(:user_company, user: user, company: company1)
+      create(:user_company, user: user, company: company2)
+
+      expect(user.companies).to include(company1, company2)
+      expect(user.companies.count).to eq(2)
+    end
+
+    it "刪除使用者時一併刪除 user_companies" do
+      user = create(:user)
+      company = create(:company)
+      create(:user_company, user: user, company: company)
+
+      expect { user.destroy }.to change { UserCompany.count }.by(-1)
+    end
   end
 
   describe "password authentication" do

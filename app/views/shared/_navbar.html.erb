@@ -37,8 +37,8 @@
               <%= link_to "登入", new_session_path,
                   class: "brutalist-button-secondary px-4 py-2 text-sm" %>
 
-              <!-- 註冊按鈕 (暫時連到登入頁面) -->
-              <%= link_to "註冊", new_session_path,
+              <!-- 註冊按鈕 -->
+              <%= link_to "註冊", new_user_path,
                   class: "brutalist-button-primary px-4 py-2 text-sm" %>
             </div>
           <% end %>
@@ -83,7 +83,7 @@
             <%= link_to "登入", new_session_path,
                 class: "brutalist-button-secondary block w-full py-3 text-center" %>
 
-            <%= link_to "註冊", new_session_path,
+            <%= link_to "註冊", new_user_path,
                 class: "brutalist-button-primary block w-full py-3 text-center" %>
           </div>
         <% end %>

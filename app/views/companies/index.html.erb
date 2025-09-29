@@ -1,0 +1,63 @@
+<div class="min-h-screen bg-gradient-to-br from-yellow-100 to-yellow-200 p-4">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="brutalist-card p-6 mb-8">
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-4xl font-black text-black brutalist-tilt-minus-1">
+          公司管理
+        </h1>
+        <%= link_to "新增公司", new_company_path,
+            class: "brutalist-button-primary py-3 px-6 text-lg" %>
+      </div>
+
+      <% if @companies.any? %>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <% @companies.each_with_index do |company, index| %>
+            <div class="bg-white border-4 border-black p-6 neubrutalist-shadow neubrutalist-hover transition-all
+                        <%= 'brutalist-tilt-1' if index.even? %>
+                        <%= 'brutalist-tilt-minus-1' if index.odd? %>">
+
+              <h3 class="text-xl font-black text-black mb-3">
+                <%= company.name %>
+              </h3>
+
+              <div class="space-y-2 mb-4">
+                <% if company.description.present? %>
+                  <p class="font-medium text-black text-sm">
+                    <%= truncate(company.description, length: 80) %>
+                  </p>
+                <% end %>
+                <p class="font-medium text-black text-xs">
+                  建立於 <%= company.created_at.strftime("%Y/%m/%d") %>
+                </p>
+              </div>
+
+              <div class="space-y-2">
+                <%= link_to "查看", company,
+                    class: "brutalist-button-secondary block w-full py-2 text-center text-sm" %>
+                <div class="flex space-x-2">
+                  <%= link_to "編輯", edit_company_path(company),
+                      class: "brutalist-button-primary flex-1 py-2 text-center text-sm" %>
+                  <%= link_to "刪除", company, method: :delete,
+                      data: { confirm: "確定要刪除 #{company.name} 嗎？" },
+                      class: "bg-red-500 border-4 border-black text-white font-bold flex-1 py-2 text-center text-sm neubrutalist-shadow hover:neubrutalist-hover transition-all" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="bg-yellow-400 border-4 border-black p-8 neubrutalist-shadow brutalist-tilt-2 text-center">
+          <h3 class="text-2xl font-black text-black mb-4">
+            還沒有公司資料
+          </h3>
+          <p class="font-bold text-black mb-4">
+            立即新增您的第一間公司！
+          </p>
+          <%= link_to "新增公司", new_company_path,
+              class: "brutalist-button-primary inline-block py-3 px-6 text-lg" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
