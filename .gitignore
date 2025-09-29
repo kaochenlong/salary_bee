@@ -40,3 +40,9 @@
 tags
 .claude/
 
+
+/config/credentials/production.key
+
+/config/credentials/development.key
+
+/config/credentials/test.key
