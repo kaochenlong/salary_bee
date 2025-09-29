@@ -14,6 +14,45 @@ RSpec.describe Company, type: :model do
       expect(company).not_to be_valid
       expect(company.errors[:name]).to include("has already been taken")
     end
+
+    it "需要統一編號" do
+      company = build(:company, tax_id: nil)
+      expect(company).not_to be_valid
+      expect(company.errors[:tax_id]).to include("can't be blank")
+    end
+
+    it "統一編號必須唯一" do
+      create(:company, tax_id: "10458575")
+      company = build(:company, tax_id: "10458575")
+      expect(company).not_to be_valid
+      expect(company.errors[:tax_id]).to include("has already been taken")
+    end
+
+    it "統一編號必須是 8 位數字" do
+      company = build(:company, tax_id: "1234567")
+      expect(company).not_to be_valid
+      expect(company.errors[:tax_id]).to include("必須是 8 位數字")
+    end
+
+    it "統一編號不可包含非數字字元" do
+      company = build(:company, tax_id: "1234567a")
+      expect(company).not_to be_valid
+      expect(company.errors[:tax_id]).to include("必須是 8 位數字")
+    end
+
+    it "驗證台灣統一編號檢查碼" do
+      # 有效的統編
+      valid_tax_ids = [ "10458575", "88117125", "53212539" ]
+      valid_tax_ids.each do |tax_id|
+        company = build(:company, tax_id: tax_id)
+        expect(company).to be_valid, "#{tax_id} 應該是有效的統編"
+      end
+
+      # 無效的統編：檢查碼錯誤
+      company = build(:company, tax_id: "88117126")
+      expect(company).not_to be_valid
+      expect(company.errors[:tax_id]).to include("統一編號格式不正確")
+    end
   end
 
   describe "關聯" do

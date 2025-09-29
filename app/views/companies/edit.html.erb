@@ -33,6 +33,19 @@
         </div>
 
         <div>
+          <%= form.label :tax_id, "統一編號", class: "block text-black font-bold mb-2 text-lg" %>
+          <%= form.text_field :tax_id,
+              required: true,
+              placeholder: "請輸入 8 位數統編",
+              maxlength: 8,
+              pattern: "[0-9]{8}",
+              class: "brutalist-input w-full px-4 py-4" %>
+          <div class="text-sm text-black mt-1 font-medium">
+            請輸入有效的台灣統一編號（8 位數字）
+          </div>
+        </div>
+
+        <div>
           <%= form.label :description, "公司簡介", class: "block text-black font-bold mb-2 text-lg" %>
           <%= form.text_area :description,
               rows: 4,

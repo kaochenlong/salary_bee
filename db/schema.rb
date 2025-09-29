@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_29_044522) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_29_054352) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -19,6 +19,28 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_29_044522) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "tax_id", limit: 8, null: false
+    t.index [ "tax_id" ], name: "index_companies_on_tax_id", unique: true
+  end
+
+  create_table "insurances", force: :cascade do |t|
+    t.string "insurance_type", null: false
+    t.integer "grade_level", null: false
+    t.decimal "salary_min", precision: 10, scale: 2, null: false
+    t.decimal "salary_max", precision: 10, scale: 2
+    t.decimal "premium_base", precision: 10, scale: 2, null: false
+    t.decimal "rate", precision: 5, scale: 4, null: false
+    t.decimal "employee_ratio", precision: 4, scale: 3, null: false
+    t.decimal "employer_ratio", precision: 4, scale: 3, null: false
+    t.decimal "government_ratio", precision: 4, scale: 3, default: "0.0"
+    t.date "effective_date", null: false
+    t.date "expiry_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index [ "grade_level" ], name: "index_insurances_on_grade_level"
+    t.index [ "insurance_type", "effective_date", "expiry_date" ], name: "index_insurances_on_type_and_dates"
+    t.index [ "insurance_type" ], name: "index_insurances_on_insurance_type"
+    t.index [ "salary_min", "salary_max" ], name: "index_insurances_on_salary_range"
   end
 
   create_table "sessions", force: :cascade do |t|

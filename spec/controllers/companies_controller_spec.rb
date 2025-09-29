@@ -63,7 +63,7 @@ RSpec.describe CompaniesController, type: :controller do
 
   describe "POST #create" do
     context "有效參數" do
-      let(:valid_params) { { company: { name: "新公司", description: "公司描述" } } }
+      let(:valid_params) { { company: { name: "新公司", description: "公司描述", tax_id: "10458575" } } }
 
       it "建立新公司" do
         expect {
@@ -87,7 +87,7 @@ RSpec.describe CompaniesController, type: :controller do
     end
 
     context "無效參數" do
-      let(:invalid_params) { { company: { name: "", description: "公司描述" } } }
+      let(:invalid_params) { { company: { name: "", description: "公司描述", tax_id: "" } } }
 
       it "不建立公司" do
         expect {
