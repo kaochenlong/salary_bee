@@ -1,9 +1,97 @@
-<h1>SalaryBee</h1>
-<p>歡迎來到薪資管理系統</p>
+<div class="min-h-screen bg-gradient-to-br from-yellow-100 to-yellow-200 flex items-center justify-center p-4">
 
-<% if Current.user %>
-  <p>歡迎 <%= Current.user.email_address %></p>
-  <%= button_to "Sign out", session_path, method: :delete %>
-<% else %>
-  <%= link_to "Sign in", new_session_path %>
-<% end %>
+  <!-- 主要內容卡片 -->
+  <div class="brutalist-card max-w-2xl w-full p-8 text-center">
+
+    <!-- 歡迎標題 -->
+    <div class="mb-8">
+      <h1 class="text-5xl font-black text-black mb-4 brutalist-tilt-minus-1">
+        歡迎來到 SalaryBee
+      </h1>
+      <p class="text-xl font-bold text-black mb-2">專業薪資管理系統</p>
+      <p class="text-lg font-medium text-black">
+        輕鬆管理薪資、追蹤績效、優化人力資源
+      </p>
+    </div>
+
+    <% if Current.user %>
+      <!-- 已登入用戶的儀表板預覽 -->
+      <div class="bg-yellow-400 border-4 border-black p-6 neubrutalist-shadow brutalist-tilt-1 mb-6">
+        <h2 class="text-2xl font-black text-black mb-4">
+          歡迎回來！
+        </h2>
+        <p class="text-lg font-bold text-black mb-4">
+          <%= Current.user.email_address %>
+        </p>
+        <p class="font-medium text-black">
+          您的薪資管理儀表板即將推出...
+        </p>
+      </div>
+
+      <!-- 功能預覽 -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-blue-600 border-4 border-black p-4 neubrutalist-shadow text-white brutalist-tilt-1">
+          <h3 class="font-bold mb-2">薪資計算</h3>
+          <p class="text-sm">自動化薪資處理</p>
+        </div>
+        <div class="bg-green-500 border-4 border-black p-4 neubrutalist-shadow text-white brutalist-tilt-minus-1">
+          <h3 class="font-bold mb-2">績效追蹤</h3>
+          <p class="text-sm">員工表現分析</p>
+        </div>
+        <div class="bg-red-500 border-4 border-black p-4 neubrutalist-shadow text-white brutalist-tilt-2">
+          <h3 class="font-bold mb-2">報表產生</h3>
+          <p class="text-sm">詳細財務報告</p>
+        </div>
+      </div>
+
+    <% else %>
+      <!-- 未登入用戶的介紹內容 -->
+      <div class="space-y-6">
+        <!-- 主要功能介紹 -->
+        <div class="bg-white border-4 border-black p-6 neubrutalist-shadow brutalist-tilt-1">
+          <h2 class="text-2xl font-black text-black mb-4">
+            為什麼選擇 SalaryBee？
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+            <div>
+              <h3 class="font-bold text-black mb-2">✓ 自動化計算</h3>
+              <p class="text-black">精確的薪資和稅務計算</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-black mb-2">✓ 合規管理</h3>
+              <p class="text-black">符合台灣勞動法規</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-black mb-2">✓ 數據安全</h3>
+              <p class="text-black">企業級安全保護</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-black mb-2">✓ 易於使用</h3>
+              <p class="text-black">直觀的操作介面</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 行動呼籲 -->
+        <div class="bg-black text-yellow-400 border-4 border-black p-6 neubrutalist-shadow brutalist-tilt-minus-1">
+          <h2 class="text-xl font-bold mb-4">
+            準備開始使用了嗎？
+          </h2>
+          <p class="font-medium">
+            立即登入或註冊，體驗專業的薪資管理解決方案
+          </p>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+
+  <!-- 背景裝飾 -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden">
+    <div class="absolute top-20 left-10 w-6 h-6 bg-purple-500 border-4 border-black neubrutalist-shadow brutalist-tilt-1"></div>
+    <div class="absolute top-32 right-20 w-4 h-4 bg-orange-500 border-4 border-black neubrutalist-shadow brutalist-tilt-minus-2"></div>
+    <div class="absolute bottom-32 left-20 w-8 h-8 bg-pink-500 border-4 border-black neubrutalist-shadow brutalist-tilt-2"></div>
+    <div class="absolute bottom-20 right-10 w-5 h-5 bg-cyan-500 border-4 border-black neubrutalist-shadow brutalist-tilt-minus-1"></div>
+  </div>
+
+</div>

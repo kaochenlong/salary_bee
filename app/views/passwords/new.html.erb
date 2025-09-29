@@ -1,6 +1,92 @@
-<h1>Forgot your password?</h1>
+<div class="min-h-screen bg-gradient-to-br from-yellow-200 to-yellow-300 flex items-center justify-center p-4">
+  <!-- 主要忘記密碼卡片 -->
+  <div class="brutalist-card max-w-md w-full p-8" x-data="{ isLoading: false, isSubmitted: false }">
 
-<%= form_with url: passwords_path do |form| %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-  <%= form.submit "Email reset instructions" %>
-<% end %>
+    <!-- SalaryBee Logo/Title -->
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-black text-black mb-2 brutalist-tilt-minus-1">
+        SalaryBee
+      </h1>
+      <p class="text-lg font-bold text-black">薪資管理系統</p>
+    </div>
+
+    <!-- 忘記密碼標題 -->
+    <div class="text-center mb-6">
+      <h2 class="text-2xl font-black text-black mb-3 brutalist-tilt-1">
+        忘記密碼？
+      </h2>
+      <p class="text-black font-medium">
+        請輸入您的電子郵件地址，我們將發送密碼重設指示給您
+      </p>
+    </div>
+
+    <!-- 錯誤訊息顯示 -->
+    <% if notice %>
+      <div class="brutalist-success p-4 mb-6">
+        ✓ <%= notice %>
+      </div>
+    <% end %>
+
+    <% if alert %>
+      <div class="brutalist-error p-4 mb-6">
+        ! <%= alert %>
+      </div>
+    <% end %>
+
+    <!-- 忘記密碼表單 -->
+    <%= form_with url: passwords_path, local: true, class: "space-y-6", data: { turbo: false } do |form| %>
+
+      <!-- Email 欄位 -->
+      <div>
+        <%= form.label :email_address, "電子郵件地址", class: "block text-black font-bold mb-2 text-lg" %>
+        <%= form.email_field :email_address,
+            required: true,
+            autofocus: true,
+            autocomplete: "username",
+            placeholder: "your@email.com",
+            value: params[:email_address],
+            class: "brutalist-input w-full px-4 py-4",
+            "aria-describedby": "email-reset-help" %>
+        <div id="email-reset-help" class="text-sm text-black mt-1 font-medium">
+          我們將發送重設指示到這個電子郵件地址
+        </div>
+      </div>
+
+      <!-- 提交按鈕 -->
+      <div class="pt-4">
+        <%= form.submit "發送重設指示",
+            class: "brutalist-button-primary w-full py-4 px-6 text-xl",
+            "x-bind:disabled": "isLoading",
+            "@click": "isLoading = true" %>
+      </div>
+
+    <% end %>
+
+    <!-- 回到登入頁面連結 -->
+    <div class="text-center mt-6">
+      <%= link_to "回到登入頁面", new_session_path,
+          class: "brutalist-button-secondary inline-block py-2 px-4 text-sm" %>
+    </div>
+
+    <!-- 裝飾性元素 -->
+    <div class="mt-8 text-center">
+      <div class="inline-block bg-black text-yellow-400 font-bold px-4 py-2 border-4 border-black neubrutalist-shadow brutalist-tilt-2">
+        安全重設
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 背景裝飾 -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden">
+    <div class="absolute top-10 left-10 w-8 h-8 bg-red-500 border-4 border-black neubrutalist-shadow brutalist-tilt-1"></div>
+    <div class="absolute top-20 right-20 w-6 h-6 bg-blue-600 border-4 border-black neubrutalist-shadow brutalist-tilt-minus-2"></div>
+    <div class="absolute bottom-20 left-20 w-10 h-10 bg-green-500 border-4 border-black neubrutalist-shadow brutalist-tilt-2"></div>
+    <div class="absolute bottom-32 right-10 w-4 h-4 bg-purple-600 border-4 border-black neubrutalist-shadow brutalist-tilt-minus-1"></div>
+
+    <!-- 更多小裝飾 - 只使用形狀 -->
+    <div class="absolute top-1/3 left-5 w-6 h-6 bg-orange-500 border-4 border-black neubrutalist-shadow brutalist-tilt-1"></div>
+    <div class="absolute top-2/3 right-5 w-4 h-4 bg-pink-500 border-4 border-black neubrutalist-shadow brutalist-tilt-minus-1"></div>
+    <div class="absolute bottom-1/4 left-1/4 w-5 h-5 bg-cyan-500 border-4 border-black neubrutalist-shadow brutalist-tilt-2"></div>
+  </div>
+</div>

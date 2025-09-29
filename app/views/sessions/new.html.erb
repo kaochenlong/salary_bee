@@ -1,9 +1,93 @@
-<%= form_with url: session_path do |form| %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %><br>
-  <%= form.submit "Sign in" %>
-<% end %>
-<br>
+<div class="min-h-screen bg-gradient-to-br from-yellow-200 to-yellow-300 flex items-center justify-center p-4">
+  <div class="brutalist-card max-w-md w-full p-8" x-data="{ showPassword: false, isLoading: false }">
 
-<%= link_to "Forgot password?", new_password_path %>
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-black text-black mb-2 brutalist-tilt-minus-1">
+        SalaryBee
+      </h1>
+      <p class="text-lg font-bold text-black">薪資管理系統</p>
+    </div>
+
+    <!-- 錯誤訊息顯示 -->
+    <% if notice %>
+      <div class="brutalist-success p-4 mb-6">
+        <%= notice %>
+      </div>
+    <% end %>
+
+    <% if alert %>
+      <div class="brutalist-error p-4 mb-6">
+        <%= alert %>
+      </div>
+    <% end %>
+
+    <%= form_with url: session_path, local: true, class: "space-y-6", data: { turbo: false } do |form| %>
+
+      <div>
+        <%= form.label :email_address, "電子郵件", class: "block text-black font-bold mb-2 text-lg" %>
+        <%= form.email_field :email_address,
+            required: true,
+            autofocus: true,
+            autocomplete: "username",
+            placeholder: "your@email.com",
+            value: params[:email_address],
+            class: "brutalist-input w-full px-4 py-4",
+            "aria-describedby": "email-help" %>
+        <div id="email-help" class="text-sm text-black mt-1 font-medium">
+          請輸入您的電子郵件地址
+        </div>
+      </div>
+
+      <div class="relative">
+        <%= form.label :password, "密碼", class: "block text-black font-bold mb-2 text-lg" %>
+        <%= form.password_field :password,
+            required: true,
+            autocomplete: "current-password",
+            placeholder: "請輸入密碼",
+            maxlength: 72,
+            class: "brutalist-input w-full px-4 py-4 pr-14",
+            "x-bind:type": "showPassword ? 'text' : 'password'",
+            "aria-describedby": "password-help" %>
+
+        <button type="button"
+                @click="showPassword = !showPassword"
+                class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black text-white px-2 py-1 border-2 border-black neubrutalist-shadow-sm hover:bg-gray-800 transition-colors">
+          <span x-text="showPassword ? '👁️' : '👁️‍🗨️'"></span>
+        </button>
+
+        <div id="password-help" class="text-sm text-black mt-1 font-medium">
+          請輸入您的密碼（最多 72 個字元）
+        </div>
+      </div>
+
+      <div class="pt-4">
+        <%= form.submit "登入 SalaryBee",
+            class: "brutalist-button-primary w-full py-4 px-6 text-xl",
+            "x-bind:disabled": "isLoading",
+            "@click": "isLoading = true" %>
+      </div>
+
+    <% end %>
+
+    <div class="text-center mt-6">
+      <%= link_to "忘記密碼？", new_password_path,
+          class: "brutalist-button-secondary inline-block py-2 px-4 text-sm" %>
+    </div>
+
+    <!-- 裝飾性元素 -->
+    <div class="mt-8 text-center">
+      <div class="inline-block bg-black text-yellow-400 font-bold px-4 py-2 border-4 border-black neubrutalist-shadow brutalist-tilt-2">
+        安全登入
+      </div>
+    </div>
+  </div>
+
+  <!-- 背景裝飾 -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden">
+    <div class="absolute top-10 left-10 w-8 h-8 bg-red-500 border-4 border-black neubrutalist-shadow brutalist-tilt-1"></div>
+    <div class="absolute top-20 right-20 w-6 h-6 bg-blue-600 border-4 border-black neubrutalist-shadow brutalist-tilt-minus-2"></div>
+    <div class="absolute bottom-20 left-20 w-10 h-10 bg-green-500 border-4 border-black neubrutalist-shadow brutalist-tilt-2"></div>
+    <div class="absolute bottom-32 right-10 w-4 h-4 bg-purple-600 border-4 border-black neubrutalist-shadow brutalist-tilt-minus-1"></div>
+  </div>
+</div>
 

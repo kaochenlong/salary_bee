@@ -1,1 +1,147 @@
 @import "tailwindcss";
+
+/* Neubrutalism 風格自定義樣式 */
+.neubrutalist-shadow {
+  box-shadow: 4px 4px 0px 0px #000;
+}
+
+.neubrutalist-shadow-lg {
+  box-shadow: 8px 8px 0px 0px #000;
+}
+
+.neubrutalist-shadow-sm {
+  box-shadow: 2px 2px 0px 0px #000;
+}
+
+.neubrutalist-hover:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #000;
+}
+
+.neubrutalist-active:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px #000;
+}
+
+.neubrutalist-focus:focus {
+  outline: none;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #000;
+}
+
+/* 略微傾斜效果 */
+.brutalist-tilt-1 {
+  transform: rotate(1deg);
+}
+
+.brutalist-tilt-minus-1 {
+  transform: rotate(-1deg);
+}
+
+.brutalist-tilt-2 {
+  transform: rotate(2deg);
+}
+
+.brutalist-tilt-minus-2 {
+  transform: rotate(-2deg);
+}
+
+/* 組合效果 */
+.brutalist-card {
+  background-color: white;
+  border: 4px solid black;
+  box-shadow: 8px 8px 0px 0px #000;
+  transform: rotate(1deg);
+}
+
+.brutalist-input {
+  border: 4px solid black;
+  box-shadow: 4px 4px 0px 0px #000;
+  background-color: white;
+  font-weight: 500;
+  font-size: 1.125rem;
+  transition: all 0.2s ease;
+}
+
+.brutalist-input:focus {
+  outline: none;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #000;
+  border-color: #2563eb;
+}
+
+.brutalist-button-primary {
+  background-color: #fbbf24;
+  border: 4px solid black;
+  font-weight: 700;
+  color: black;
+  box-shadow: 4px 4px 0px 0px #000;
+  transition: all 0.15s ease;
+}
+
+.brutalist-button-primary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #000;
+}
+
+.brutalist-button-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px #000;
+}
+
+.brutalist-button-secondary {
+  background-color: #2563eb;
+  border: 4px solid black;
+  font-weight: 700;
+  color: white;
+  box-shadow: 2px 2px 0px 0px #000;
+  transition: all 0.15s ease;
+}
+
+.brutalist-button-secondary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #000;
+}
+
+.brutalist-button-secondary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px #000;
+}
+
+.brutalist-error {
+  background-color: #ef4444;
+  border: 4px solid black;
+  color: white;
+  font-weight: 700;
+  box-shadow: 4px 4px 0px 0px #000;
+  transform: rotate(-1deg);
+}
+
+.brutalist-success {
+  background-color: #22c55e;
+  border: 4px solid black;
+  color: white;
+  font-weight: 700;
+  box-shadow: 4px 4px 0px 0px #000;
+  transform: rotate(1deg);
+}
+
+/* Navbar 專用樣式 */
+.brutalist-navbar {
+  z-index: 1000;
+}
+
+.brutalist-navbar a {
+  text-decoration: none;
+}
+
+.brutalist-navbar a:hover h1 {
+  transform: rotate(-2deg);
+  transition: transform 0.2s ease;
+}
+
+/* 手機版選單動畫 */
+.brutalist-navbar [x-show] {
+  transition: all 0.2s ease-in-out;
+}
+
