@@ -4,7 +4,7 @@ source "https://rubygems.org"
 gem "rails", "~> 8.0.3"          # Rails 8.0 主框架
 
 # ===== 網頁伺服器 =====
-gem "puma", "~> 7.0", ">= 7.0.4" # 高效能 Ruby 網頁伺服器
+gem "puma", "~> 7.1" # 高效能 Ruby 網頁伺服器
 
 # ===== 資料庫 =====
 gem "pg", "~> 1.1"               # PostgreSQL 資料庫適配器
