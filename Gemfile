@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # ===== 核心框架 =====
-gem "rails", "~> 8.0.3"          # Rails 8.0 主框架
+gem "rails", "~> 8.1.0"          # Rails 8.0 主框架
 
 # ===== 網頁伺服器 =====
 gem "puma", "~> 7.0", ">= 7.0.4" # 高效能 Ruby 網頁伺服器
