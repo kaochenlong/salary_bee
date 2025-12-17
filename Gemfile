@@ -44,7 +44,7 @@ group :development, :test do
   gem "rails-controller-testing"  # Controller 測試支援
   gem "capybara"                   # System 測試支援
   gem "brakeman", require: false  # 安全漏洞靜態分析
-  gem "rubocop", "~> 1.81"        # Ruby 程式碼風格檢查
+  gem "rubocop", "~> 1.82"        # Ruby 程式碼風格檢查
   gem "rubocop-rails-omakase", require: false  # Rails 程式碼風格檢查
 end
 
