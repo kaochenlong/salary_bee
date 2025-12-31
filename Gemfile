@@ -7,7 +7,7 @@ gem "rails", "~> 8.1.1"          # Rails 8.0 主框架
 gem "puma", "~> 7.1" # 高效能 Ruby 網頁伺服器
 
 # ===== 資料庫 =====
-gem "pg", "~> 1.1"               # PostgreSQL 資料庫適配器
+gem "pg", "~> 1.6"               # PostgreSQL 資料庫適配器
 
 # ===== 前端資產管理 =====
 gem "propshaft"                  # Rails 8 現代資產管道
