@@ -30,7 +30,7 @@ gem "thruster", require: false   # HTTP 快取壓縮和加速
 gem "tzinfo-data", platforms: %i[ windows jruby ]  # Windows 時區資料
 
 # ===== 未來可能需要的功能 =====
-gem "bcrypt", "~> 3.1.7"       # 密碼加密 (has_secure_password)
+gem "bcrypt", "~> 3.1.21"      # 密碼加密 (has_secure_password)
 # gem "image_processing", "~> 1.2" # Active Storage 圖片處理
 
 # ===== 授權與狀態管理 =====
